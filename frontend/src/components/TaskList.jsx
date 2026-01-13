@@ -1,12 +1,12 @@
 import React from 'react';
 import TaskCard from './TaskCard';
 
-const TaskList = ({ tasks, onToggleComplete, onEdit, onDelete }) => {
+const TaskList = ({ tasks, onTaskUpdated, onTaskDeleted }) => {
   if (tasks.length === 0) {
     return (
       <div className="empty-state">
-        <h2>No tasks found</h2>
-        <p>Add your first task to get started!</p>
+        <h3>No tasks found</h3>
+        <p>Create your first task to get started!</p>
       </div>
     );
   }
@@ -17,9 +17,37 @@ const TaskList = ({ tasks, onToggleComplete, onEdit, onDelete }) => {
         <TaskCard
           key={task._id}
           task={task}
-          onToggleComplete={onToggleComplete}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          onTaskUpdated={onTaskUpdated}
+          onTaskDeleted={onTaskDeleted}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default TaskList;
+=======
+import React from 'react';
+import TaskCard from './TaskCard';
+
+const TaskList = ({ tasks, onTaskUpdated, onTaskDeleted }) => {
+  if (tasks.length === 0) {
+    return (
+      <div className="empty-state">
+        <h3>No tasks found</h3>
+        <p>Create your first task to get started!</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="task-list">
+      {tasks.map(task => (
+        <TaskCard
+          key={task._id}
+          task={task}
+          onTaskUpdated={onTaskUpdated}
+          onTaskDeleted={onTaskDeleted}
         />
       ))}
     </div>
